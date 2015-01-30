@@ -571,6 +571,7 @@ else
   pagesCached,
   enableTransitionCache,
   enableProgressBar,
+  cacheCurrentPage,
   allowLinkExtensions: Link.allowExtensions,
   supported: browserSupportsTurbolinks,
   EVENTS: clone(EVENTS)
