@@ -96,18 +96,19 @@ fetchHistory = (cachedPage) ->
 
 
 cacheCurrentPage = ->
-  currentStateUrl = new ComponentUrl currentState.url
+  if currentState
+    currentStateUrl = new ComponentUrl currentState.url
 
-  pageCache[currentStateUrl.absolute] =
-    url:                      currentStateUrl.relative,
-    body:                     document.body,
-    title:                    document.title,
-    positionY:                window.pageYOffset,
-    positionX:                window.pageXOffset,
-    cachedAt:                 new Date().getTime(),
-    transitionCacheDisabled:  document.querySelector('[data-no-transition-cache]')?
+    pageCache[currentStateUrl.absolute] =
+      url:                      currentStateUrl.relative,
+      body:                     document.body,
+      title:                    document.title,
+      positionY:                window.pageYOffset,
+      positionX:                window.pageXOffset,
+      cachedAt:                 new Date().getTime(),
+      transitionCacheDisabled:  document.querySelector('[data-no-transition-cache]')?
 
-  constrainPageCacheTo cacheSize
+    constrainPageCacheTo cacheSize
 
 pagesCached = (size = cacheSize) ->
   cacheSize = parseInt(size) if /^[\d]+$/.test size
